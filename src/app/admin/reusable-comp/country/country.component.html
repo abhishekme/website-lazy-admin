@@ -1,0 +1,6 @@
+@{{property}}
+<select *ngIf="data!=null && data != undefined" class="form-control" [(ngModel)]="property" name="country_id" (change)="loadState($event)">
+	<option [ngValue]="0">---SELECT COUNTRY---</option>
+	<option *ngFor="let row of data" [ngValue]="row.id">{{row.country_name}}</option>
+</select>
+<select *ngIf="data==null || data === undefined" class="form-control" name="country_id"><option [ngValue]="0" selected="selected">---SELECT COUNTRY---</option></select>

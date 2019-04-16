@@ -1,0 +1,6 @@
+<select *ngIf="data!=null && data != undefined"class="form-control" name="state_id" (change)="loadState($event)">
+	<option [ngValue]="0">---SELECT State---</option>
+	<option *ngFor="let row of data" [ngValue]="row.id">{{row.state_name}}</option>
+</select>
+<select *ngIf="data==null || data === undefined" class="form-control" name="state_id"><option [ngValue]="0">---SELECT State---</option></select>
+
