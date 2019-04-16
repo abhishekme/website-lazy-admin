@@ -18,7 +18,7 @@ import { AlertService, AlertMessage } from '../../services/messages/alert.servic
 import { NotificationsService } from 'angular2-notifications';
 
 
-declare var $: any;
+declare var $: any;  
 
 @Component({
   selector: 'app-user',
