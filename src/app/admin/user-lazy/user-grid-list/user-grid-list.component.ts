@@ -29,6 +29,8 @@ export class UserGridListComponent implements OnInit {
   objAlert: AlertMessage;
   userModel: User;
   public listData: any = [];
+  public gridData: any = [];
+
   public totalData: any;
   public adminLimit: number;
   public pageNum: number;
@@ -139,7 +141,8 @@ export class UserGridListComponent implements OnInit {
       this.service.adminUserList(pageNum, limitNum, srchKey, queryType, this.sortByField, this.sortByDir).subscribe(
           data => {
             this.listData = data.record;
-  
+            this.gridData = data.record;
+            
             console.log('#### user list data #######');
             console.log(data);
   

@@ -33,11 +33,22 @@ import { AdminComponent } from './admin/admin.component';
 import { PartialModule } from './partial/partial.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 //import { CustomMaterialModule } from './core/material.module';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -54,7 +65,9 @@ import {
     HomeComponent,
   ],
   imports: [
+    GridModule,
     MatToolbarModule,
+    
     MatButtonModule,
     MatCardModule,
     MatInputModule,
@@ -74,7 +87,12 @@ import {
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules
     }),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    ButtonsModule,
+    InputsModule,
+    ExcelExportModule,
+    DropDownsModule,
+    DateInputsModule
   ],
   exports: [
     MatToolbarModule,

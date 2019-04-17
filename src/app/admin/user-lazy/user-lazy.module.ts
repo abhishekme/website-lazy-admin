@@ -26,11 +26,14 @@ import { CountryComponent } from '../reusable-comp/country/country.component';
 import { StateComponent } from '../reusable-comp/state/state.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserGridListComponent } from './user-grid-list/user-grid-list.component';
+//import { GridCreatorComponent } from './grid-creator/grid-creator.component';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 @NgModule({
   imports: [
     CommonModule,
     PartialModule,
+    GridModule,
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
@@ -51,6 +54,7 @@ import { UserGridListComponent } from './user-grid-list/user-grid-list.component
     StateComponent,
     UserFormComponent,
     UserGridListComponent,
+    //GridCreatorComponent,
   ],
   exports: [
     RouterModule
