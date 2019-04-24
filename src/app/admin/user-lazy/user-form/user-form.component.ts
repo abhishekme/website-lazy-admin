@@ -58,7 +58,11 @@ export class UserFormComponent implements OnInit {
     //Declaration component communicate
     @Input() mode;
     @Input() objectData:any;
-    
+    @Output() onClose = new EventEmitter();
+
+    back(){
+      this.onClose.emit();
+    }
 
   constructor() { }
 

@@ -9,45 +9,91 @@
 <div class="main-panel">
   <!-- INCLUDE SIDEBAR -->
   <app-header></app-header>
-    <div class="content">
+    <div class="content user-list">
       <div class="container-fluid">
         <flash-messages></flash-messages>
         <span class="slds-notify_container">
-          <!-- {{objAlert | json}} -->
-          <!-- <ngl-notification *ngIf="objAlert.show" type="alert" severity="error" 
-          (nglNotificationClose)="onCloseAlert($event)" timeout="5000" 
-          class="slds-theme--alert-texture">
-               <h2>{{objAlert.message}}</h2>
-          </ngl-notification> -->
           <simple-notifications></simple-notifications>
       </span>
-        <div class="row">
+      <user-form *ngIf="mode.length && mode == 'form-action'" [objectData]="userData" (onClose)="closeForm()"></user-form>
+        <div class="row" *ngIf="mode.length && mode == 'list-action'">
             <div class="col-md-12" [ngStyle]="{'text-align':'right'}">
-                <a routerLink="/admin/users/add">
+                <a (click)="insert()">
                 <button type="button" class="btn ink-reaction btn-raised btn-primary">ADD NEW</button></a>
             </div>
           <div class="col-md-12">
-            <div class="card">
+
+            
+
+            <div class="card" >
               <div class="card-header card-header-primary">
                 <h4 class="card-title">User Management</h4>
                 <p class="card-category">Listing</p>
               </div>
-              {{listData | json}}
-              
-              <div id="data-list">
-                <kendo-grid [data]="gridData" [height]="410">
+              <div >
+                <kendo-grid [data]="gridView" [height]="1010"
+                [skip]="skip"
+                [sortable]="{
+                  allowUnsort: allowUnsort,
+                  mode: multiple ? 'multiple' : 'single'
+                  }"
+                [sort]="sort"
+                (sortChange)="sortChange($event)"
+                [pageable]="{
+                  buttonCount: buttonCount,
+                  info: info,
+                  type: type,
+                  pageSizes: true,
+                  previousNext: true
+                }"                
+                [pageSize]="pageSize"
+                [selectable]="true"
+                (selectionChange)="gridRowSelected($event)"
+                (pageChange)="pageChange($event)">
+
+                  <!-- Add Toolbar -->
+                  <ng-template kendoGridToolbarTemplate>
+                    <ng-container *ngFor="let icon of toolbarIcons">
+                      <span>
+                          <button kendoButton [disabled]="icon.disabled" [style.color]="setIconColor(icon)" (click)="setIconClick(icon)">
+                             <i [ngClass]="icon.class"></i>
+                          </button>&nbsp;
+                      </span>
+                    </ng-container>
+                  </ng-template>
+                  <!-- ADD Columns -->
                   <kendo-grid-column field="username" title="Username" width="40">
                   </kendo-grid-column>
-                  <kendo-grid-column field="first_name" title="First Name" width="150">
+                  <kendo-grid-column field="first_name" title="First Name" width="60">
                   </kendo-grid-column>
-                  <kendo-grid-column field="last_name" title="Last Name" width="100">
+                  <kendo-grid-column field="last_name" title="Last Name" width="60">
                   </kendo-grid-column>
+                  <kendo-grid-column field="email" title="Email" width="75">
+                  </kendo-grid-column>
+                  <!-- <kendo-grid-column title="Picture"  width="40" [ngStyle]="{'text-align':'center'}">
+                      <ng-template kendoGridCellTemplate let-dataItem> 
+                          <section *ngIf="dataItem.profile_pic != null">
+                            <img onError="this.src='./assets/img/no-image.png'" src="{{imagePath}}user/{{dataItem.profile_pic}}" 
+                            [ngStyle]="{'width':'auto','height':'150px','border':'1px solid #ccc','padding':'5px','background-color':'#eee'}"/>
+                          </section>
+                        </ng-template> 
+                  </kendo-grid-column> -->
+                  <!-- <kendo-grid-column title="Action"  width="15" [ngStyle]="{'text-align':'center'}">
+                      <ng-template kendoGridCellTemplate let-dataItem>
+                          <a href="javascript:void(0)" (click)="edit(dataItem.id)" [ngStyle]="{'cursor':'pointer'}">
+                            <i class="fa fa-edit"></i>
+                        </a> | 
+                        <a  href="javascript:void(0)" [ngStyle]="{'cursor':'pointer'}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                      </ng-template> 
+                  </kendo-grid-column> -->
               </kendo-grid>
               </div>
               <!-- Include User Form -->
-
+              <!-- {{listData | json}} -->
             </div>
-          </div>  
+          </div>     
           
         </div>
       </div>
@@ -56,6 +102,8 @@
   <app-footer></app-footer>    
 </div>
 </div>
+
+<
 
 
 
