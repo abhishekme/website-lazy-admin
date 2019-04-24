@@ -109,7 +109,7 @@ export class UserGridListComponent implements OnInit {
       this.getTotalData(this.srchKey);
       this.getListData(this.pageNum, this.limitNum, this.srchKey, '');
     });
-    }
+    }  
 
     getTotalData(srchKey){
       this.service.adminGetUserData(srchKey).subscribe(
