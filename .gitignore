@@ -3,3 +3,4 @@ node_modules/
 node_modules-old/
 src-old/
 old/public/photos
+public/photos
