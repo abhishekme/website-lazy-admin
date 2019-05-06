@@ -15,7 +15,7 @@ import { UserGridListComponent } from './user-grid-list/user-grid-list.component
 
 export const userRoutes: Routes = [
 { path: '',
-component: UserGridListComponent, canActivate: [AuthGuard],
+component: UserListComponent, canActivate: [AuthGuard],
 /*children: [
     { path: 'add', component: UserAddComponent, canActivate:[AuthGuard]},
     { path: 'edit/:id', component: UserEditComponent, canActivate: [AuthGuard]},
@@ -23,7 +23,7 @@ component: UserGridListComponent, canActivate: [AuthGuard],
 ],*/
 },
 { path: 'add', component: UserAddComponent, canActivate: [AuthGuard]},
-{ path: ':page', component: UserGridListComponent, canActivate: [AuthGuard] },
+{ path: ':page', component: UserListComponent, canActivate: [AuthGuard] },
 { path: 'edit/:id/:page', component: UserEditComponent, canActivate: [AuthGuard]},
 { path: '**', redirectTo: 'users' }
 ];

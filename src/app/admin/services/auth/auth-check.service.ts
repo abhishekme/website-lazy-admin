@@ -50,13 +50,16 @@ state: RouterStateSnapshot): boolean {
 const getToken  = localStorage.getItem('loginToken');
 console.log(getToken);
   if (getToken != '' && getToken != null && getToken !== undefined )  {
-    const tokenObj 	= JSON.parse(getToken);
+    const tokenObj 	= JSON.parse(JSON.stringify(getToken));
     if (getToken === '' || getToken === undefined) {
     return true;
     } else {
-    const thisToken = tokenObj.token;
-    if (this.jwtHelper.isTokenExpired(thisToken)) {
-    return true;
+    
+    if (tokenObj !== '' || tokenObj === undefined) {
+        const thisToken = tokenObj.token;
+        if (this.jwtHelper.isTokenExpired(thisToken)) {
+        return true;
+        }
     }
     this._router.navigate(['/admin/dashboard']);
     return false;
