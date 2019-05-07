@@ -25,6 +25,6 @@ component: UserListComponent, canActivate: [AuthGuard],
 { path: 'add', component: UserAddComponent, canActivate: [AuthGuard]},
 { path: ':page', component: UserListComponent, canActivate: [AuthGuard] },
 { path: 'edit/:id/:page', component: UserEditComponent, canActivate: [AuthGuard]},
-{ path: '**', redirectTo: 'users' }
+{ path: '**', redirectTo: 'users' }  
 ];
 
